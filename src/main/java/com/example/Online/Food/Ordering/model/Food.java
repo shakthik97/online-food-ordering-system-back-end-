@@ -1,17 +1,15 @@
 package com.example.Online.Food.Ordering.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
 public class Food {
 
@@ -22,6 +20,7 @@ public class Food {
     private String name;
 
     private String description;
+
     private Long price;
 
     @ManyToOne

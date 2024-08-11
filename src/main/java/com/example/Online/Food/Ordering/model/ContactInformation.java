@@ -1,6 +1,6 @@
 package com.example.Online.Food.Ordering.model;
+import lombok.*;
 
-import lombok.Data;
 
 @Data
 public class ContactInformation {
