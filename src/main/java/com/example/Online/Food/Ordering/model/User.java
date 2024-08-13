@@ -26,7 +26,7 @@ public class User {
 
     private String password;
 
-    private USER_ROLE role;
+    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
     // when we fetch this User type object, it will not include this orders List with the help of this annotation
