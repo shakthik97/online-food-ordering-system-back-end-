@@ -2,6 +2,7 @@ package com.example.Online.Food.Ordering.model;
 
 import com.example.Online.Food.Ordering.dto.RestaurantDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,12 +25,13 @@ public class User {
 
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
-    // when we fetch this User type object, it will not include this orders List with the help of this annotation
+    // when we fetch this User type object, it will not include this attribute (orders List) with the help of this annotation
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
