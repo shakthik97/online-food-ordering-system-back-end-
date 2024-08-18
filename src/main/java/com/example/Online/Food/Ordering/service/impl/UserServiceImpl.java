@@ -1,13 +1,14 @@
-package com.example.Online.Food.Ordering.service;
+package com.example.Online.Food.Ordering.service.impl;
 
 import com.example.Online.Food.Ordering.config.JwtProvider;
 import com.example.Online.Food.Ordering.model.User;
 import com.example.Online.Food.Ordering.repository.UserRepository;
+import com.example.Online.Food.Ordering.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
