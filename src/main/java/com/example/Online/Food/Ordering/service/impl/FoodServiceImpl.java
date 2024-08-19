@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -98,16 +99,23 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> searchFood(String keyword) {
-        return null;
+
+        return foodRepository.searchFood(keyword);
     }
 
     @Override
     public Food findFoodById(Long foodId) throws Exception {
-        return null;
+        Optional<Food> optionalFood = foodRepository.findById(foodId);
+        if(optionalFood.isEmpty()){
+            throw new Exception("food not exists...");
+        }
+        return optionalFood.get();
     }
 
     @Override
     public Food updateAvailabilityStatus(Long foodId) throws Exception {
-        return null;
+        Food food = findFoodById(foodId);
+        food.setAvailable(!food.isAvailable());
+        return foodRepository.save(food);
     }
 }
