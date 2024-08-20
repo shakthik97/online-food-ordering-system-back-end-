@@ -23,41 +23,39 @@ public class IngredientController {
     public ResponseEntity<IngredientCategory> createIngredientCategory(
             @RequestBody IngredientCategoryRequest req) throws Exception {
         IngredientCategory item = ingredientsService.createIngredientCategory(req.getName(), req.getRestaurantId());
-        return new ResponseEntity<>(item,HttpStatus.CREATED);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 
     @PostMapping()
     public ResponseEntity<IngredientsItem> createIngredientItem(
             @RequestBody IngredientRequest req
-    )throws Exception {
+    ) throws Exception {
         IngredientsItem item = ingredientsService.createIngredientItem(req.getRestaurantId(), req.getName(), req.getCategoryId());
-        return new ResponseEntity<>(item,HttpStatus.CREATED);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}/stock")
     public ResponseEntity<IngredientsItem> updateIngredientStock(
             @PathVariable Long id
-    )throws Exception {
+    ) throws Exception {
         IngredientsItem item = ingredientsService.updateStock(id);
-        return new ResponseEntity<>(item,HttpStatus.OK);
+        return new ResponseEntity<>(item, HttpStatus.OK);
     }
 
     @GetMapping("/restaurant/{id}")
     public ResponseEntity<List<IngredientsItem>> getRestaurantIngredient(
             @PathVariable Long id
-    )throws Exception {
+    ) throws Exception {
         List<IngredientsItem> items = ingredientsService.findRestaurantsIngredients(id);
-        return new ResponseEntity<>(items,HttpStatus.OK);
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
 
     @GetMapping("/restaurant/{id}/category")
     public ResponseEntity<List<IngredientCategory>> getRestaurantIngredientCategory(
             @PathVariable Long id
-    )throws Exception {
+    ) throws Exception {
         List<IngredientCategory> items = ingredientsService.findIngredientCategoryByRestaurantId(id);
-        return new ResponseEntity<>(items,HttpStatus.OK);
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
-
-
 }
