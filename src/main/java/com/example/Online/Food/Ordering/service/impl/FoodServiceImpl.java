@@ -23,6 +23,7 @@ public class FoodServiceImpl implements FoodService {
     public Food createFood(CreateFoodRequest req, Category category, Restaurant restaurant) {
 
         Food food = new Food();
+
         food.setFoodCategory(category);
         food.setRestaurant(restaurant);
         food.setDescription(req.getDescription());
