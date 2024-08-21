@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
         Address shipptingAddress = order.getDeliveryAddress();
 
         Address savedAddress = addressRepository.save(shipptingAddress);
-        if(!user.getAddresses().contains(savedAddress)){
+        if (!user.getAddresses().contains(savedAddress)) {
             user.getAddresses().add(savedAddress);
             userRepository.save(user);
         }
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderItem> orderItems = new ArrayList<>();
 
-        for(CartItem cartItem : cart.getItems()){
+        for (CartItem cartItem : cart.getItems()) {
             OrderItem orderItem = new OrderItem();
             orderItem.setFood(cartItem.getFood());
             orderItem.setIngredients(cartItem.getIngredients());
@@ -65,9 +65,16 @@ public class OrderServiceImpl implements OrderService {
 
             OrderItem savedOrderItem = orderItemRepository.save(orderItem);
             orderItems.add(savedOrderItem);
-
         }
-        return null;
+        Long totalPrice = cartService.calculateCartTotals(cart);
+
+        createdOrder.setItems(orderItems);
+        createdOrder.setTotalPrice(totalPrice);
+
+        Order savedOrder = orderRepository.save(createdOrder);
+        restaurant.getOrders().add(savedOrder);
+
+        return createdOrder;
     }
 
     @Override
